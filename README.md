@@ -13,7 +13,7 @@ But we cannot change AIR app's build number directly by build settings in applic
 
 ## How to set AIR app's build number
 
-I made shell script.
+I made shell script and you can use it.
 
 ### 1. download two files in this repository
 
