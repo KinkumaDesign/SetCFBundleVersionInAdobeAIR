@@ -14,12 +14,20 @@ CERTの部分を変更する
 
 フォルダ構成はこんな感じで全て1つのフォルダに置く
 
--作業フォルダ
+作業フォルダ
 |- Entitlements.plist
 |- YourApp.ipa
 |- set_build_no.sh
 
 ここでコマンドを実行する
+
+まず実行権利を与える
+
+コマンド
+cd path/to/作業フォルダ
+chmod a+x set_build_no.sh
+
+あとは実行する
 
 コマンド
 ./set_build_no.sh {ipaファイル名} {ビルド番号}

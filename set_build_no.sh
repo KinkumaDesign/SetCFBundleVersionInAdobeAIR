@@ -1,11 +1,14 @@
 #!/bin/sh -x
 
+#how to use it
+#https://github.com/KinkumaDesign/SetCFBundleVersionInAdobeAIR
+
 # You must set this ===
 CERT="iPhone Distribution: Ordinary Joe (ABC1DEF234)"
 #===================
 
 if [ $# != 2 ]; then
-	echo "usage: ./set_build_no {ipa file Name} {build no}"
+	echo "usage: ./set_build_no.sh {ipa file Name} {build no}"
 	exit 1
 fi
 
