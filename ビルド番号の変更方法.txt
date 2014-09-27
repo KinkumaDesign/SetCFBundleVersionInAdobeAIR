@@ -1,0 +1,35 @@
+■1 Entitlements.plist を設定する
+
+app IDを設定する
+
+
+■2 set_build_no.shの設定をする
+
+証明書をkeychain.appから探し出し
+set_build_no.shの中の
+CERTの部分を変更する
+
+
+■3 set_build_no.shを実行する
+
+フォルダ構成はこんな感じで全て1つのフォルダに置く
+
+-作業フォルダ
+|- Entitlements.plist
+|- YourApp.ipa
+|- set_build_no.sh
+
+ここでコマンドを実行する
+
+コマンド
+./set_build_no.sh {ipaファイル名} {ビルド番号}
+
+例）
+./set_build_no.sh YourApp.ipa 1.0.0.2
+
+
+■4 新しくできたipaをApplicationLoaderでアップする
+
+例）
+YourApp_1.0.0.2/YourApp.ipa
+
