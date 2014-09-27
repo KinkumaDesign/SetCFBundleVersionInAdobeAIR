@@ -45,7 +45,7 @@ Copy and paste into CERT section in set_build_no.sh
 ### 4. set up directory to execute shell script
 
 ```
--WorkingDirectory
+WorkingDirectory
 |- Entitlements.plist
 |- set_build_no.sh
 |- YourApp.ipa
