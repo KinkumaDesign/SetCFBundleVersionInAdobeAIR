@@ -15,7 +15,7 @@ But we cannot change AIR app's build number directly by build settings in applic
 
 I made shell script and you can use it.
 
-### 1. download two files in this repository
+### 1. Download two files in this repository
 
 - Entitlements.plist
 - set_build_no.sh
@@ -23,26 +23,26 @@ I made shell script and you can use it.
 Configure settings following after these steps
 
 
-### 2. set up app ID in Entitlements.plist
+### 2. Set up app ID in Entitlements.plist
 
 Replace this to your app ID
 
 ABC1DEF234.com.kumade.app.sample.airtest
 
-### 3. set up set_build_no.sh
+### 3. Set up set_build_no.sh
 
 Open Keychain.app
 
 Search your Distribution Certificate file
 
-for example
+e.g.
 
 iPhone Distribution: Ordinary Joe (ABC1DEF234)
 
 Copy and paste into CERT section in set_build_no.sh
 
 
-### 4. set up directory to execute shell script
+### 4. Set up directory to execute shell script
 
 ```
 WorkingDirectory
@@ -59,13 +59,13 @@ chmod a+x ./set_build_no.sh
 ```
 
 
-### 5. execute shell script
+### 5. Execute shell script
 
 ```
 ./set_build_no.sh {your app .ipa file name} {build number}
 ```
 
-for example
+e.g.
 
 ```
 ./set_build_no.sh YourApp.ipa 1.0.0.1
