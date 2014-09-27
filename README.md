@@ -1,6 +1,6 @@
 # Set CFBundleVersion of Adobe AIR app
 
-## Apple changes how to upload an app in iTunesConnect
+## Apple don't approve same build number app when we submit to iTunesConnect
 
 See this
 
