@@ -8,7 +8,7 @@ ERROR ITMS-9000: “Redundant Binary Upload. There already exists a binary uploa
 
 We have to change the build number every time we upload it.
 
-But we cannot change AIR app's build number with build settings with application-settings.xml file directly.
+But we cannot change AIR app's build number directly by build settings in application-settings.xml.
 
 
 ## How to set AIR app's build number
