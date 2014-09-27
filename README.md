@@ -71,7 +71,7 @@ for example
 ./set_build_no.sh YourApp.ipa 1.0.0.1
 ```
 
-After this you will find new folder named like YourApp_1.0.0.1. There is new ipa file.
+After this you will find new folder named like YourApp_1.0.0.1. There is a new ipa file with new build number.
 
 ### 6. Upload it using ApplicationLoader.app
 
