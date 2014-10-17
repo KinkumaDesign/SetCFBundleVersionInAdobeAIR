@@ -2,9 +2,15 @@
 
 #settings ==========
 IPA="/path/to/App.ipa"
-APP_FILE_NAME="AppName" #not required .app extension string
+
+#without .app extension
+APP_FILE_NAME="AppName"
+
 PROVISION="/path/to/some.mobileprovision"
+
 CERT="iPhone Distribution: Ordinary Joe (ABC1DEF234)"
+
+ENTITLEMENTS="/path/to/Entitlements.plist"
 #===================
 
 
@@ -58,9 +64,9 @@ cd ../../
 # remove the signature
 rm -rf Payload/*.app/_CodeSignature Payload/*.app/CodeResources
 # replace the provision
-cp "$PROVISION" Payload/*.app/embedded.mobileprovision
+cp -p "$PROVISION" Payload/*.app/embedded.mobileprovision
 # sign with the new certificate
-/usr/bin/codesign -f -s "${CERT}" --resource-rules Payload/*.app/ResourceRules.plist Payload/*.app
+/usr/bin/codesign -f -s "${CERT}" --resource-rules Payload/*.app/ResourceRules.plist --entitlements ${ENTITLEMENTS} Payload/*.app
 
 # ========
 
