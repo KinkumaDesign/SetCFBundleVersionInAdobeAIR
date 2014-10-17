@@ -1,4 +1,12 @@
-■1 set_build_no.shの設定をする
+■1 Entitlements.plistの設定をする
+
+Provisioning Profileに使われているApp IDを使う
+
+.mobileprovisionファイルをテキストエディタで開くと一部文字化けするが、Entitlementsのxmlが見つかるそれを参考にする。
+
+
+
+■2 set_build_no.shの設定をする
 
 set_build_no.shの上のsettingsの中の設定をする
 
@@ -15,7 +23,7 @@ CERT
 keychain.appを開き、必要な証明書をから探し出して写す
 
 
-■2 set_build_no.shを実行する
+■3 set_build_no.shを実行する
 
 コマンドを実行する
 
@@ -25,7 +33,7 @@ keychain.appを開き、必要な証明書をから探し出して写す
 ./set_build_no.sh 1.0.0.2
 
 
-■3 新しくできたipaをApplicationLoaderでアップする
+■4 新しくできたipaをApplicationLoaderでアップする
 
 例）
 YourApp_1.0.0.2/YourApp.ipa

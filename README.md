@@ -15,9 +15,9 @@ But we cannot change AIR app's build number directly by build settings in applic
 
 I made shell script and you can use it.
 
-### 1. Download set_build_no.sh in this repository
+### 1. Set up Entitlements.plist
 
-Configure settings following these steps
+Open provisioning profile with text editor, it contains entitlements section. It helps settings to Entitlements.plist file.
 
 ### 2. Set up set_build_no.sh
 
