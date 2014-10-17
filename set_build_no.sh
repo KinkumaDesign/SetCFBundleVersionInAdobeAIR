@@ -1,78 +1,76 @@
 #!/bin/sh -x
 
-#how to use it
-#https://github.com/KinkumaDesign/SetCFBundleVersionInAdobeAIR
-
-# You must set this ===
+#settings ==========
+IPA="/path/to/App.ipa"
+APP_FILE_NAME="AppName" #not required .app extension string
+PROVISION="/path/to/some.mobileprovision"
 CERT="iPhone Distribution: Ordinary Joe (ABC1DEF234)"
 #===================
 
-if [ $# != 2 ]; then
-	echo "usage: ./set_build_no.sh {ipa file Name} {build no}"
+
+
+
+
+if [ $# != 1 ]; then
+	echo "usage: ./set_build_no {build no}"
 	exit 1
 fi
 
-FILE_NAME=$1
-BUILD_NO=$2
-FILE_NAME_WITHOUT_EXT=${FILE_NAME%.*}
-WORK_DIR="${FILE_NAME_WITHOUT_EXT}_${BUILD_NO}"
-FILE_ZIP="${FILE_NAME_WITHOUT_EXT}.zip"
+IPA_FILE_NAME=${IPA##*/}
+BUILD_NO=$1
+IPA_FILE_NAME_WITHOUT_EXT=${IPA_FILE_NAME%.*}
+WORK_DIR="${IPA_FILE_NAME_WITHOUT_EXT}_${BUILD_NO}"
+FILE_ZIP="${IPA_FILE_NAME_WITHOUT_EXT}.zip"
 TEMP_VER_STR="temp_version_here"
 
 
 
-# unzip ipa file -----------
+# unzip ipa file ====
 
 mkdir ${WORK_DIR}
 
-cp ${FILE_NAME} "${WORK_DIR}/${FILE_ZIP}"
+cp ${IPA} "${WORK_DIR}/${FILE_ZIP}"
 
 cd ${WORK_DIR}
 
 unzip ${FILE_ZIP}
 
-echo "======================= zip"
 rm ${FILE_ZIP}
 
 
 
-# replace CFBundleVersion in Info.plist -------
-echo "======================= replace CFBundleVersion"
+# replace CFBundleVersion in Info.plist ====
 
-cd "Payload/${FILE_NAME_WITHOUT_EXT}.app"
+cd "Payload/${APP_FILE_NAME}.app"
 
 perl -0777 -i -p -e 's/(CFBundleVersion\<\/key\>)(.*?)(\<string\>)[\d]+\.[\d]+\.[\d]+/$1$2$3'${TEMP_VER_STR}'/s' Info.plist
 perl -0777 -i -p -e 's/'${TEMP_VER_STR}'/'${BUILD_NO}'/s' Info.plist
 
 
-# return 
-cd ../../../
-
-
-#code signing
-echo "======================= code signing"
-
-/usr/bin/codesign -f -s "${CERT}" "--resource-rules=${WORK_DIR}/Payload/${FILE_NAME_WITHOUT_EXT}.app/ResourceRules.plist" --entitlements "Entitlements.plist" "${WORK_DIR}/Payload/${FILE_NAME_WITHOUT_EXT}.app"
-
-
-#symbolic link
-#see http://stackoverflow.com/questions/3516300/update-iphone-app-coderesources-file-must-be-a-symoblic-link
-
-cd "${WORK_DIR}/Payload/${FILE_NAME_WITHOUT_EXT}.app"
-echo "======================= symbolic link"
-
-rm CodeResources
-ln -s _CodeSignature/CodeResources CodeResources
 
 cd ../../
 
-#zip option -y is VERY IMPORTANT!!!
+# ========
+# Signing certificate code is made by Richard Bronosky on Stackoverflow and github
+# http://stackoverflow.com/questions/5160863/how-to-re-sign-the-ipa-file
+# https://github.com/RichardBronosky/ota-tools
 
-echo "======================= unzip"
-zip -y -r $FILE_NAME Payload
+# remove the signature
+rm -rf Payload/*.app/_CodeSignature Payload/*.app/CodeResources
+# replace the provision
+cp "$PROVISION" Payload/*.app/embedded.mobileprovision
+# sign with the new certificate
+/usr/bin/codesign -f -s "${CERT}" --resource-rules Payload/*.app/ResourceRules.plist Payload/*.app
+
+# ========
+
+
+
+zip -qr $IPA_FILE_NAME Payload
 
 rm -r Payload
 
 #return 
 cd ../
 
+exit 0

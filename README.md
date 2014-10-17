@@ -15,65 +15,55 @@ But we cannot change AIR app's build number directly by build settings in applic
 
 I made shell script and you can use it.
 
-### 1. Download two files in this repository
+### 1. Download set_build_no.sh in this repository
 
-- Entitlements.plist
-- set_build_no.sh
+Configure settings following these steps
 
-Configure settings following after these steps
+### 2. Set up set_build_no.sh
 
-
-### 2. Set up app ID in Entitlements.plist
-
-Replace this to your app ID
-
-ABC1DEF234.com.kumade.app.sample.airtest
-
-### 3. Set up set_build_no.sh
-
-Open Keychain.app
-
-Search your Distribution Certificate file
-
-e.g.
-
-iPhone Distribution: Ordinary Joe (ABC1DEF234)
-
-Copy and paste into CERT section in set_build_no.sh
+**IPA**  
+path to .ipa file
 
 
-### 4. Set up directory to execute shell script
+**APP_FILE_NAME**  
+.app file name (without extension)
 
-```
-WorkingDirectory
-|- Entitlements.plist
-|- set_build_no.sh
-|- YourApp.ipa
-```
+**PROVISION**  
+path to .mobileprovision = provisioning file
 
-Before you execute shell script you need to privilege it.
+**CERT**  
+Open Keychain.app and search your Distribution Certificate file
+
+e.g. iPhone Distribution: Ordinary Joe (ABC1DEF234)
+
+
+
+
+### 3. Set up to execute shell script
+
+Before you execute shell script you need to privilege it. (only first time)
 
 ```
-cd path/to/WorkingDirectory
+cd path/to/directory
 chmod a+x ./set_build_no.sh
 ```
 
 
-### 5. Execute shell script
+### 4. Execute shell script
 
 ```
-./set_build_no.sh {your app .ipa file name} {build number}
+./set_build_no.sh {build number}
 ```
 
 e.g.
 
 ```
-./set_build_no.sh YourApp.ipa 1.0.0.1
+./set_build_no.sh 1.0.0.1
 ```
 
 After this you will find new folder named like YourApp_1.0.0.1. There is a new ipa file with new build number.
 
-### 6. Upload it using ApplicationLoader.app
+### 5. Upload new build number app using ApplicationLoader.app
 
 
 
