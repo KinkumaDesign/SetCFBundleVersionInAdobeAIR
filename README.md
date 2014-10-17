@@ -36,7 +36,8 @@ Open Keychain.app and search your Distribution Certificate file
 
 e.g. iPhone Distribution: Ordinary Joe (ABC1DEF234)
 
-
+**ENTITLEMENTS**  
+path to Entitlement.plist
 
 
 ### 3. Set up to execute shell script

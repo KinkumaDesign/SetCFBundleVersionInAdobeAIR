@@ -22,6 +22,8 @@ PROVISION
 CERT
 keychain.appを開き、必要な証明書をから探し出して写す
 
+ENTITLEMENTS
+Entitlement.plistへのパス
 
 ■3 set_build_no.shを実行する
 
