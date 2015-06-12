@@ -1,3 +1,19 @@
+# No longer need to use this script
+
+Adobe AIR 18 was released. It can set Build Number. So you no longer need to use this script. Set CFBundleVersion into your application-settings.xml directly.
+
+Adobe AIR 18 release note
+
+https://helpx.adobe.com/flash-player/release-note/fp_18_air_18_release_notes.html
+
+
+> Build Number in AIR iOS
+This feature allows developers to simply update the build number while keeping the version number the same so that their application is available quickly on Apple’s Testflight for beta testing.
+
+---
+---
+
+
 # Set CFBundleVersion of Adobe AIR app
 
 ## Apple don't approve same build number app when we submit to iTunesConnect
